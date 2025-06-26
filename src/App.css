@@ -1,57 +1,105 @@
+/* Reset dasar */
 * {
-  box-sizing: border-box; /* Menambahkan box-sizing untuk semua elemen */
-}
-
-body {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body, html {
+  height: 100%;
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(135deg, #dfece7, #f6f6f6);
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.form-wrapper {
+/* Kontainer utama agar semua konten di tengah */
+.page-container {
   width: 100%;
-  max-width: 420px;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+/* Kotak untuk logo dan judul */
+.info-box {
   background-color: #ffffff;
-  padding: 2.5rem 2rem;
+  padding: 2rem 1.5rem;
   border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  animation: fadeIn 0.5s ease-out;
-  overflow: hidden; /* Menambahkan overflow hidden */
-}
-
-h2 {
-  text-align: center;
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  color: #4b6043;
-}
-
-form input {
   width: 100%;
-  padding: 10px 12px; /* Mengurangi padding */
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  animation: fadeIn 0.6s ease-out;
+  margin-bottom: 1.5rem;
+}
+
+.logo-unand {
+  width: 80px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.web-title {
+  font-size: 1.8rem;
+  color: #4b6043;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #678a63;
+  font-weight: 500;
+}
+
+/* Kotak untuk form */
+.form-box {
+  background-color: #ffffff;
+  padding: 2rem 1.5rem;
+  border-radius: 16px;
+  width: 100%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.8s ease-out;
+}
+
+h2, .form-title {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 1.2rem;
+  color: #4b6043;
+  font-weight: 600;
+}
+
+form input, form textarea {
+  width: 100%;
+  padding: 10px 12px;
   margin-bottom: 1rem;
   border: 1.5px solid #ccc;
   border-radius: 8px;
   font-size: 1rem;
   background-color: #f8f8f8;
+  color: #000000;
   transition: border 0.2s, box-shadow 0.2s;
 }
 
-form input:focus {
+form input:focus, form textarea:focus {
   border-color: #7a9e78;
   box-shadow: 0 0 0 3px rgba(122, 158, 120, 0.2);
   outline: none;
   background-color: #fff;
 }
 
-form button {
+form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+form button, .submit-btn {
   width: 100%;
-  padding: 10px; /* Mengurangi padding */
+  padding: 10px;
   background-color: #7a9e78;
   color: white;
   font-weight: 600;
@@ -62,16 +110,16 @@ form button {
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-form button:hover {
+form button:hover, .submit-btn:hover {
   background-color: #678a63;
   transform: translateY(-1px);
 }
 
 p {
-  color: #2c5e1a;
   text-align: center;
   margin-top: 1rem;
   font-size: 0.95rem;
+  color: #2c5e1a;
 }
 
 p a {
@@ -91,6 +139,80 @@ p a:hover {
   font-size: 0.9rem;
 }
 
+/* Pesan sukses/error */
+.success-msg {
+  color: #2e7d32;
+  background-color: #e6f4ea;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.error-msg {
+  color: #d32f2f;
+  background-color: #fbeaea;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Tombol logout */
+.logout-btn {
+  margin-top: 1rem;
+  background-color: #d9534f;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #c9302c;
+}
+
+/* Tabel untuk admin */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+td {
+  background-color: #fff;
+}
+
+.action-btn {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.action-btn:hover {
+  background-color: #c9302c;
+}
+
+/* Animasi fade in */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -100,4 +222,86 @@ p a:hover {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Responsif mobile */
+@media (max-width: 480px) {
+  .web-title {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .info-box,
+  .form-box {
+    padding: 1.5rem 1rem;
+  }
+}
+
+textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 10px;
+  margin-bottom: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #f8f8f8;
+  color: #000;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+textarea:focus {
+  border-color: #7a9e78;
+  box-shadow: 0 0 0 3px rgba(122, 158, 120, 0.2);
+  outline: none;
+  background-color: #fff;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+li button {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+li button:hover {
+  background-color: #c9302c;
+}
+
+.logout-btn {
+  margin-top: 2rem;
+  background-color: #d9534f;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #c9302c;
 }
