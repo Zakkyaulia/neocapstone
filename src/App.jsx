@@ -1,68 +1,93 @@
-import React from "react";
+// src/App.jsx
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
-// Import komponen
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
+import AspirasiForm from "./components/AspirasiForm";
 import AdminDashboard from "./components/AdminDashboard";
-import UserDashboard from "./components/UserDashboard";
-import CompetitionList from "./components/CompetitionList";
-import CompetitionDetail from "./components/CompetitionDetail";
-import PublicLombaPage from "./components/PublicLombaPage";
+import PublicAspirasiPage from "./components/PublicAspirasiPage";
 
-// Import global styling (jika masih digunakan)
 import "./App.css";
 
 function App() {
-  // Ambil data user dari localStorage
-  const user = JSON.parse(localStorage.getItem("user"));
-  
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userRole, setUserRole] = useState(null);
+
+  const handleLogin = (role) => {
+    setIsLoggedIn(true);
+    setUserRole(role);
+  };
+
   return (
     <Router>
       <div className="app-container">
-        <Navbar user={user} />
-        
-        <Routes>
-          {/* Halaman utama (publik) */}
-          <Route path="/" element={<PublicLombaPage />} />
+        <Navbar
+          isLoggedIn={isLoggedIn}
+          userRole={userRole}
+          setIsLoggedIn={setIsLoggedIn}
+          setUserRole={setUserRole}
+        />
 
-          {/* Halaman login dan register */}
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/register" element={<RegisterForm />} />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<PublicAspirasiPage />} />
 
-          {/* Halaman daftar lomba (untuk semua) */}
-          <Route path="/lomba" element={<CompetitionList />} />
-          <Route path="/lomba/:id" element={<CompetitionDetail />} />
+            <Route
+              path="/login"
+              element={
+                isLoggedIn ? (
+                  <Navigate to={userRole === "admin" ? "/admin" : "/kirim"} />
+                ) : (
+                  <LoginForm onLogin={handleLogin} />
+                )
+              }
+            />
 
-          {/* Halaman dashboard khusus admin */}
-          <Route
-            path="/admin-dashboard"
-            element={
-              user?.role === "admin" ? (
-                <AdminDashboard />
-              ) : (
-                <Navigate to="/login" replace />
-              )
-            }
-          />
+            <Route
+              path="/register"
+              element={
+                isLoggedIn ? <Navigate to="/" /> : <RegisterForm onLogin={handleLogin} />
+              }
+            />
 
-          {/* Halaman dashboard khusus user */}
-          <Route
-            path="/user-dashboard"
-            element={
-              user?.role === "user" ? (
-                <UserDashboard />
-              ) : (
-                <Navigate to="/login" replace />
-              )
-            }
-          />
+            <Route
+              path="/kirim"
+              element={
+                isLoggedIn && userRole === "user" ? (
+                  <AspirasiForm
+                    onSubmit={(newAsp) => {
+                      const existing =
+                        JSON.parse(localStorage.getItem("aspirasiList")) || [];
+                      localStorage.setItem(
+                        "aspirasiList",
+                        JSON.stringify([...existing, newAsp])
+                      );
+                    }}
+                  />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
 
-          {/* Jika URL tidak ditemukan, redirect ke halaman utama */}
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
+            <Route
+              path="/admin"
+              element={
+                isLoggedIn && userRole === "admin" ? (
+                  <AdminDashboard />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+
+            {/* Catch-all for unknown routes */}
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </main>
 
         <Footer />
       </div>

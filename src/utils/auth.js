@@ -1,23 +1,20 @@
-// src/utils/auth.js
+export const users = [
+  {
+    email: "admin@example.com",
+    password: "admin123",
+    role: "admin",
+    name: "Admin"
+  },
+  {
+    email: "user@example.com",
+    password: "user123",
+    role: "user",
+    name: "Mahasiswa"
+  }
+];
 
-// Ambil user dari localStorage
-export function getCurrentUser() {
-  const user = localStorage.getItem("user");
-  return user ? JSON.parse(user) : null;
-}
-
-// Cek apakah user sudah login
-export function isLoggedIn() {
-  return !!getCurrentUser();
-}
-
-// Ambil role dari user (admin / user)
-export function getUserRole() {
-  const user = getCurrentUser();
-  return user?.role || null;
-}
-
-// Logout user
-export function logout() {
-  localStorage.removeItem("user");
-}
+export const authenticate = (email, password) => {
+  return users.find(
+    (user) => user.email === email && user.password === password
+  );
+};

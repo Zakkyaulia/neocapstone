@@ -1,40 +1,31 @@
+// src/components/Navbar.jsx
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./Navbar.css";
+import "../styles/Navbar.css";
 
-function Navbar() {
+function Navbar({ isLoggedIn, userRole, setIsLoggedIn, setUserRole }) {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("currentUser"));
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("currentUser");
-    localStorage.removeItem("loggedIn");
-    navigate("/login");
+    setIsLoggedIn(false);
+    setUserRole(null);
+    navigate("/");
   };
 
   return (
     <nav className="navbar">
-      <div className="navbar-left">
-        <img src="/logo-unand.png" alt="UNAND" className="logo" />
-        <span className="navbar-title">UNAND Competition Hub</span>
+      <div className="logo">
+        <img src="/logo-unand.png" alt="Unand Logo" />
+        <span>Portal Aspirasi Universitas Andalas</span>
       </div>
-
-      <div className="navbar-right">
-        {user?.role === "admin" && (
-          <>
-            <Link to="/admin-dashboard" className="nav-link">Dashboard Admin</Link>
-            <button onClick={handleLogout} className="logout-btn">Logout</button>
-          </>
-        )}
-        {user?.role === "user" && (
-          <>
-            <Link to="/user-dashboard" className="nav-link">Dashboard</Link>
-            <button onClick={handleLogout} className="logout-btn">Logout</button>
-          </>
-        )}
-        {!user && (
-          <Link to="/login" className="nav-link">Login</Link>
+      <div className="nav-links">
+        <Link to="/">Beranda</Link>
+        {isLoggedIn && userRole === "user" && <Link to="/kirim">Kirim Aspirasi</Link>}
+        {isLoggedIn && userRole === "admin" && <Link to="/admin">Dashboard</Link>}
+        {isLoggedIn ? (
+          <button onClick={handleLogout}>Logout</button>
+        ) : (
+          <Link to="/login">Login</Link>
         )}
       </div>
     </nav>

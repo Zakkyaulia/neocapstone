@@ -1,0 +1,67 @@
+/* src/styles/AspirasiForm.css */
+
+.aspirasi-form-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  border: 1px solid #d9e6dd;
+}
+
+.aspirasi-form-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #2e5339;
+}
+
+.aspirasi-form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.aspirasi-form-container textarea {
+  resize: vertical;
+  min-height: 120px;
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #c5d5c5;
+  font-family: inherit;
+  outline: none;
+  background-color: #f9fdfb;
+  transition: border 0.3s;
+}
+
+.aspirasi-form-container textarea:focus {
+  border-color: #6fae90;
+}
+
+.aspirasi-form-container button {
+  background-color: #2e5339;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.aspirasi-form-container button:hover {
+  background-color: #3f7550;
+}
+
+@media (max-width: 600px) {
+  .aspirasi-form-container {
+    margin: 2rem 1rem;
+    padding: 1.5rem;
+  }
+
+  .aspirasi-form-container button {
+    font-size: 0.95rem;
+  }
+}

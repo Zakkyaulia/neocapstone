@@ -1,0 +1,81 @@
+/* src/styles/PublicAspirasiPage.css */
+
+.public-page {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #dce5dd;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  text-align: center; /* <-- Tambahkan ini agar semuanya center */
+}
+
+.public-page h2 {
+  font-size: 1.8rem;
+  color: #2e5339;
+  margin-bottom: 0.5rem;
+}
+
+.public-page p {
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.empty-msg {
+  font-style: italic;
+  color: #999;
+  margin-top: 1rem;
+}
+
+.public-aspirasi-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left; /* Supaya list isi aspirasi tetap rata kiri */
+}
+
+.public-aspirasi-list li {
+  background-color: #f5fdf7;
+  border: 1px solid #bcd9bc;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: box-shadow 0.2s ease;
+}
+
+.public-aspirasi-list li:hover {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.public-aspirasi-list blockquote {
+  font-size: 1rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+  color: #333;
+  padding-left: 1rem;
+  border-left: 4px solid #84b684;
+}
+
+.public-aspirasi-list small {
+  font-size: 0.85rem;
+  color: #777;
+  display: block;
+  text-align: right;
+}
+
+@media (max-width: 600px) {
+  .public-page {
+    margin: 2rem 1rem;
+    padding: 1.5rem;
+  }
+
+  .public-aspirasi-list blockquote {
+    font-size: 0.95rem;
+    padding-left: 0.8rem;
+  }
+
+  .public-aspirasi-list li {
+    padding: 0.8rem;
+  }
+}

@@ -1,13 +1,10 @@
-// src/components/Footer.jsx
 import React from "react";
-import "./Footer.css";
+import "../styles/Footer.css";
 
 function Footer() {
   return (
     <footer className="footer">
-      <p>
-        &copy; {new Date().getFullYear()} Universitas Andalas — UNAND Competition Hub. All rights reserved.
-      </p>
+      <p>&copy; {new Date().getFullYear()} Web Aspirasi Mahasiswa UNAND</p>
     </footer>
   );
 }

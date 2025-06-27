@@ -1,0 +1,10 @@
+/* src/styles/Footer.css */
+
+.footer {
+  background-color: #2e5339;
+  color: #fbeec1;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: auto;
+}

@@ -1,71 +1,56 @@
-// src/components/RegisterForm.jsx
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./RegisterForm.css";
+import "../styles/RegisterForm.css";
 
-function RegisterForm() {
-  const navigate = useNavigate();
+function RegisterForm({ onRegister }) {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
-    password: ""
+    password: "",
+    confirmPassword: "",
   });
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newUser = {
-      name: formData.name,
-      email: formData.email,
-      password: formData.password,
-      role: "user"
-    };
+    if (formData.password !== formData.confirmPassword) {
+      setError("Konfirmasi password tidak cocok.");
+      return;
+    }
 
-    localStorage.setItem("user", JSON.stringify(newUser));
-    localStorage.setItem("loggedIn", true);
-    localStorage.setItem("currentUser", JSON.stringify(newUser));
+    if (!formData.email || !formData.password) {
+      setError("Mohon lengkapi semua data.");
+      return;
+    }
 
-    navigate("/user-dashboard");
+    onRegister(formData); // panggil prop dari parent
+    setFormData({ email: "", password: "", confirmPassword: "" });
+    setError("");
   };
 
   return (
-    <div className="page-container">
-      <div className="info-box">
-        <img src="/logo-unand.png" alt="Logo UNAND" className="logo-unand" />
-        <div className="web-title">UNAND Competition Hub</div>
-        <div className="subtitle">Portal Lomba Mahasiswa Universitas Andalas</div>
-      </div>
-
+    <div className="register-page">
       <div className="form-box">
-        <h2>Register</h2>
-        {error && <div className="error">{error}</div>}
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Nama Lengkap"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
+        <h2>Daftar Akun</h2>
+        <p className="subtitle">Buat akun untuk menyampaikan aspirasi</p>
 
+        {error && <div className="error">{error}</div>}
+
+        <form onSubmit={handleSubmit}>
           <input
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder="Alamat Email"
             value={formData.email}
             onChange={handleChange}
             required
           />
-
           <input
             type="password"
             name="password"
@@ -74,11 +59,19 @@ function RegisterForm() {
             onChange={handleChange}
             required
           />
-
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Konfirmasi Password"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            required
+          />
           <button type="submit">Daftar</button>
         </form>
+
         <p>
-          Sudah punya akun? <a href="/">Login di sini</a>
+          Sudah punya akun? <a href="/login">Login di sini</a>
         </p>
       </div>
     </div>
