@@ -1,0 +1,159 @@
+.page-container {
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f9fefb, #e6f3ea);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-box {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo-unand {
+  width: 50px;
+  margin-bottom: 0.5rem;
+}
+
+.web-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #4b6043;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #666;
+}
+
+.form-box {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  margin: 1.5rem 0;
+  width: 100%;
+  max-width: 720px;
+}
+
+.form-title {
+  margin-bottom: 1.5rem;
+  color: #4b6043;
+  font-size: 1.4rem;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.submit-btn {
+  background-color: #4b6043;
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #3b4e36;
+}
+
+.success-msg {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  padding: 1rem 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+li h3 {
+  color: #2f4d2a;
+  margin-bottom: 0.5rem;
+}
+
+li p {
+  margin: 0.3rem 0;
+  font-size: 0.95rem;
+}
+
+li a {
+  color: #4b6043;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+li button {
+  margin-top: 0.5rem;
+  background-color: #d9534f;
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+li button:hover {
+  background-color: #c9302c;
+}
+
+.logout-btn {
+  margin-top: 2rem;
+  background-color: #444;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #222;
+}
+
+@media (max-width: 600px) {
+  .form-box {
+    padding: 1.5rem;
+  }
+
+  .web-title {
+    font-size: 1.5rem;
+  }
+
+  .submit-btn,
+  .logout-btn {
+    width: 100%;
+  }
+}

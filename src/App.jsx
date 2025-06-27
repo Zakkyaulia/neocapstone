@@ -1,87 +1,71 @@
-import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+
+// Import komponen
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import LoginForm from "./components/LoginForm";
 import RegisterForm from "./components/RegisterForm";
-import AdminDashboard from "./pages/AdminDashboard";
+import AdminDashboard from "./components/AdminDashboard";
+import UserDashboard from "./components/UserDashboard";
+import CompetitionList from "./components/CompetitionList";
+import CompetitionDetail from "./components/CompetitionDetail";
+import PublicLombaPage from "./components/PublicLombaPage";
+
+// Import global styling (jika masih digunakan)
 import "./App.css";
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  // Cek jika ada akun admin, kalau belum maka buat
-  useEffect(() => {
-    const existingUser = localStorage.getItem("user");
-    if (!existingUser) {
-      const adminAccount = {
-        name: "Admin UNAND",
-        email: "admin@unand.ac.id",
-        password: "admin123",
-        role: "admin",
-      };
-      localStorage.setItem("user", JSON.stringify(adminAccount));
-    }
-  }, []);
-
   // Ambil data user dari localStorage
-  useEffect(() => {
-    const stored = localStorage.getItem("user");
-    if (stored) {
-      setUser(JSON.parse(stored));
-    }
-  }, []);
-
+  const user = JSON.parse(localStorage.getItem("user"));
+  
   return (
     <Router>
-      <Routes>
-        {/* Halaman Login */}
-        <Route path="/login" element={<LoginForm />} />
+      <div className="app-container">
+        <Navbar user={user} />
+        
+        <Routes>
+          {/* Halaman utama (publik) */}
+          <Route path="/" element={<PublicLombaPage />} />
 
-        {/* Halaman Registrasi */}
-        <Route path="/register" element={<RegisterForm />} />
+          {/* Halaman login dan register */}
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<RegisterForm />} />
 
-        {/* Dashboard Admin */}
-        <Route
-          path="/admin-dashboard"
-          element={
-            user && user.role === "admin" ? (
-              <AdminDashboard />
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          }
-        />
+          {/* Halaman daftar lomba (untuk semua) */}
+          <Route path="/lomba" element={<CompetitionList />} />
+          <Route path="/lomba/:id" element={<CompetitionDetail />} />
 
-        {/* Dashboard User (Placeholder untuk nanti) */}
-        <Route
-          path="/user-dashboard"
-          element={
-            user && user.role === "user" ? (
-              <h2 style={{ textAlign: "center" }}>Welcome, {user.name} 👋</h2>
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          }
-        />
-
-        {/* Default Route */}
-        <Route
-          path="/"
-          element={
-            user ? (
-              user.role === "admin" ? (
-                <Navigate to="/admin-dashboard" />
+          {/* Halaman dashboard khusus admin */}
+          <Route
+            path="/admin-dashboard"
+            element={
+              user?.role === "admin" ? (
+                <AdminDashboard />
               ) : (
-                <Navigate to="/user-dashboard" />
+                <Navigate to="/login" replace />
               )
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
+            }
+          />
 
-        {/* Fallback */}
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+          {/* Halaman dashboard khusus user */}
+          <Route
+            path="/user-dashboard"
+            element={
+              user?.role === "user" ? (
+                <UserDashboard />
+              ) : (
+                <Navigate to="/login" replace />
+              )
+            }
+          />
+
+          {/* Jika URL tidak ditemukan, redirect ke halaman utama */}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+
+        <Footer />
+      </div>
     </Router>
   );
 }

@@ -1,76 +1,88 @@
-import { useState } from "react";
+// src/components/RegisterForm.jsx
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./RegisterForm.css";
 
-export default function RegisterForm() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirm, setConfirm] = useState("");
-  const [error, setError] = useState("");
+function RegisterForm() {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: ""
+  });
+  const [error, setError] = useState("");
 
-  const handleRegister = (e) => {
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (password !== confirm) {
-      setError("Password tidak cocok");
-      return;
-    }
 
     const newUser = {
-      name,
-      email,
-      password,
-      role: "user", // default mahasiswa
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+      role: "user"
     };
 
     localStorage.setItem("user", JSON.stringify(newUser));
-    navigate("/login");
+    localStorage.setItem("loggedIn", true);
+    localStorage.setItem("currentUser", JSON.stringify(newUser));
+
+    navigate("/user-dashboard");
   };
 
   return (
     <div className="page-container">
       <div className="info-box">
-        <img src="/logo-unand.png" alt="Logo Unand" className="logo-unand" />
-        <h2 className="web-title">UNAND INFO LOMBA</h2>
-        <p className="subtitle">Platform Aspirasi & Informasi Mahasiswa</p>
+        <img src="/logo-unand.png" alt="Logo UNAND" className="logo-unand" />
+        <div className="web-title">UNAND Competition Hub</div>
+        <div className="subtitle">Portal Lomba Mahasiswa Universitas Andalas</div>
       </div>
 
       <div className="form-box">
         <h2>Register</h2>
-        {error && <p className="error">{error}</p>}
-        <form onSubmit={handleRegister}>
+        {error && <div className="error">{error}</div>}
+        <form onSubmit={handleSubmit}>
           <input
             type="text"
+            name="name"
             placeholder="Nama Lengkap"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={formData.name}
+            onChange={handleChange}
             required
           />
+
           <input
             type="email"
+            name="email"
             placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={formData.email}
+            onChange={handleChange}
             required
           />
+
           <input
             type="password"
+            name="password"
             placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formData.password}
+            onChange={handleChange}
             required
           />
-          <input
-            type="password"
-            placeholder="Konfirmasi Password"
-            value={confirm}
-            onChange={(e) => setConfirm(e.target.value)}
-            required
-          />
-          <button type="submit">Register</button>
+
+          <button type="submit">Daftar</button>
         </form>
-        <p>Sudah punya akun? <a href="/login">Login</a></p>
+        <p>
+          Sudah punya akun? <a href="/">Login di sini</a>
+        </p>
       </div>
     </div>
   );
 }
+
+export default RegisterForm;

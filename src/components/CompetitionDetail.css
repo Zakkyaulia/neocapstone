@@ -1,0 +1,87 @@
+.page-container {
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f8fcf9, #e6eee9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.info-box {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logo-unand {
+  width: 60px;
+  margin-bottom: 0.5rem;
+}
+
+.web-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #4b6043;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 0.3rem;
+}
+
+.form-box {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  max-width: 700px;
+  width: 100%;
+}
+
+.form-box h2 {
+  color: #4b6043;
+  margin-bottom: 1rem;
+}
+
+.form-box p {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 0.7rem;
+}
+
+a {
+  color: #4b6043;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #2f4d2a;
+}
+
+button {
+  background-color: #7a9e78;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #678a63;
+}
+
+@media (max-width: 600px) {
+  .form-box {
+    padding: 1.5rem;
+  }
+
+  .web-title {
+    font-size: 1.4rem;
+  }
+}

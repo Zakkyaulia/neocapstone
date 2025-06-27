@@ -1,222 +1,213 @@
-/* Reset dasar */
+/* ===== App.css ===== */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body, html {
-  height: 100%;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #dfece7, #f6f6f6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #f4fdf4, #ffffff);
+  color: #333;
+  overflow-x: hidden;
 }
 
-/* Kontainer utama agar semua konten di tengah */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+}
+
 .page-container {
   width: 100%;
-  max-width: 500px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem 1rem;
 }
 
-/* Kotak untuk logo dan judul */
 .info-box {
-  background-color: #ffffff;
-  padding: 2rem 1.5rem;
-  border-radius: 16px;
-  width: 100%;
   text-align: center;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-  animation: fadeIn 0.6s ease-out;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .logo-unand {
-  width: 80px;
-  height: auto;
-  margin-bottom: 1rem;
+  width: 60px;
+  margin-bottom: 0.5rem;
 }
 
 .web-title {
   font-size: 1.8rem;
-  color: #4b6043;
   font-weight: 700;
-  margin-bottom: 0.2rem;
+  color: #4b6043;
 }
 
 .subtitle {
-  font-size: 1.1rem;
-  color: #678a63;
-  font-weight: 500;
+  font-size: 1rem;
+  color: #666;
 }
 
-/* Kotak untuk form */
 .form-box {
+  width: 100%;
   background-color: #ffffff;
-  padding: 2rem 1.5rem;
-  border-radius: 16px;
-  width: 100%;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  animation: fadeIn 0.8s ease-out;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
 }
 
-h2, .form-title {
-  text-align: center;
-  font-size: 1.6rem;
-  margin-bottom: 1.2rem;
-  color: #4b6043;
-  font-weight: 600;
+.form-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-form input, form textarea {
-  width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 1rem;
-  border: 1.5px solid #ccc;
-  border-radius: 8px;
+.form-box input,
+.form-box textarea {
+  padding: 10px;
   font-size: 1rem;
-  background-color: #f8f8f8;
-  color: #000000;
-  transition: border 0.2s, box-shadow 0.2s;
-}
-
-form input:focus, form textarea:focus {
-  border-color: #7a9e78;
-  box-shadow: 0 0 0 3px rgba(122, 158, 120, 0.2);
-  outline: none;
-  background-color: #fff;
-}
-
-form textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-
-form button, .submit-btn {
+  border: 1px solid #ccc;
+  border-radius: 6px;
   width: 100%;
+}
+
+.form-box button {
   padding: 10px;
-  background-color: #7a9e78;
-  color: white;
-  font-weight: 600;
   font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-form button:hover, .submit-btn:hover {
-  background-color: #678a63;
-  transform: translateY(-1px);
-}
-
-p {
-  text-align: center;
-  margin-top: 1rem;
-  font-size: 0.95rem;
-  color: #2c5e1a;
-}
-
-p a {
-  color: #4b6043;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-p a:hover {
-  text-decoration: underline;
-}
-
-.error {
-  color: red;
-  text-align: center;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-}
-
-/* Pesan sukses/error */
-.success-msg {
-  color: #2e7d32;
-  background-color: #e6f4ea;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.error-msg {
-  color: #d32f2f;
-  background-color: #fbeaea;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-/* Tombol logout */
-.logout-btn {
-  margin-top: 1rem;
-  background-color: #d9534f;
+  background-color: #4b6043;
   color: white;
-  padding: 10px 16px;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  font-weight: 600;
   transition: background-color 0.3s ease;
 }
 
-.logout-btn:hover {
-  background-color: #c9302c;
+.form-box button:hover {
+  background-color: #3c4e36;
 }
 
-/* Tabel untuk admin */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1rem;
-}
-
-th, td {
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  text-align: left;
-  font-size: 0.95rem;
-}
-
-th {
-  background-color: #f2f2f2;
-  color: #333;
-}
-
-td {
-  background-color: #fff;
-}
-
-.action-btn {
+.logout-btn {
   background-color: #d9534f;
-  color: white;
+  color: #fff;
+  padding: 10px;
+  margin-top: 1rem;
   border: none;
-  padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-weight: 600;
 }
 
-.action-btn:hover {
-  background-color: #c9302c;
+.success-msg {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  border: 1px solid #c3e6cb;
 }
 
-/* Animasi fade in */
-@keyframes fadeIn {
+/* ===== Navbar.css ===== */
+nav {
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eaeaea;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav .logoSection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+nav img {
+  width: 40px;
+  height: auto;
+}
+
+nav .title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #4b6043;
+}
+
+nav .menu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+nav .menu a {
+  text-decoration: none;
+  color: #4b6043;
+  font-weight: 500;
+}
+
+nav .menu button {
+  background-color: #d9534f;
+  color: #fff;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ===== Footer.css ===== */
+footer {
+  padding: 1rem;
+  background-color: #f0f0f0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  border-top: 1px solid #ddd;
+  margin-top: auto;
+}
+
+/* ===== Responsive Styles ===== */
+@media (max-width: 768px) {
+  .page-container {
+    padding: 1rem;
+  }
+
+  .form-box {
+    padding: 1rem;
+  }
+
+  nav .menu {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .web-title {
+    font-size: 1.4rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+}
+
+/* ===== Animations ===== */
+@keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -224,84 +215,8 @@ td {
   }
 }
 
-/* Responsif mobile */
-@media (max-width: 480px) {
-  .web-title {
-    font-size: 1.5rem;
-  }
-
-  .subtitle {
-    font-size: 1rem;
-  }
-
-  .info-box,
-  .form-box {
-    padding: 1.5rem 1rem;
-  }
-}
-
-textarea {
-  width: 100%;
-  min-height: 80px;
-  padding: 10px;
-  margin-bottom: 1rem;
-  border: 1.5px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-  background-color: #f8f8f8;
-  color: #000;
-  transition: border 0.2s, box-shadow 0.2s;
-}
-
-textarea:focus {
-  border-color: #7a9e78;
-  box-shadow: 0 0 0 3px rgba(122, 158, 120, 0.2);
-  outline: none;
-  background-color: #fff;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-li {
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-li button {
-  background-color: #d9534f;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
-}
-
-li button:hover {
-  background-color: #c9302c;
-}
-
-.logout-btn {
-  margin-top: 2rem;
-  background-color: #d9534f;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
-}
-
-.logout-btn:hover {
-  background-color: #c9302c;
+.page-container,
+.form-box,
+.info-box {
+  animation: fadeInUp 0.6s ease-in-out;
 }
