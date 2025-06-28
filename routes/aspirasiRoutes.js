@@ -4,7 +4,8 @@ const {
   createAspirasi, 
   getAllAspirasi, 
   getAspirasiByUserId, 
-  getAspirasiById 
+  getAspirasiById, 
+  deleteAspirasi 
 } = require('../controllers/aspirasiController');
 
 // Route untuk membuat aspirasi baru (user)
@@ -18,5 +19,8 @@ router.get('/user/:user_id', getAspirasiByUserId);
 
 // Route untuk mendapatkan aspirasi berdasarkan ID
 router.get('/:id', getAspirasiById);
+
+// Route untuk menghapus aspirasi berdasarkan ID
+router.delete('/:id', deleteAspirasi);
 
 module.exports = router; 

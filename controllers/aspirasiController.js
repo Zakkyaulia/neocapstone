@@ -136,9 +136,36 @@ const getAspirasiById = async (req, res) => {
   }
 };
 
+// Menghapus aspirasi berdasarkan ID
+const deleteAspirasi = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const aspirasi = await Aspirasi.findByPk(id);
+    if (!aspirasi) {
+      return res.status(404).json({
+        success: false,
+        message: 'Aspirasi tidak ditemukan'
+      });
+    }
+    await aspirasi.destroy();
+    res.json({
+      success: true,
+      message: 'Aspirasi berhasil dihapus'
+    });
+  } catch (error) {
+    console.error('Delete aspirasi error:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Terjadi kesalahan server',
+      error: error.message
+    });
+  }
+};
+
 module.exports = {
   createAspirasi,
   getAllAspirasi,
   getAspirasiByUserId,
-  getAspirasiById
+  getAspirasiById,
+  deleteAspirasi
 }; 
