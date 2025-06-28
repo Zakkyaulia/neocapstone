@@ -11,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      aspirasi.belongsTo(models.user, {
+        foreignKey: 'user_id',
+        targetKey: 'id',
+        as: 'user'
+      });
     }
   }
   aspirasi.init({

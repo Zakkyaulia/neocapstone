@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const db = require('./models');
 const authRoutes = require('./routes/authRoutes');
+const aspirasiRoutes = require('./routes/aspirasiRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -18,6 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/aspirasi', aspirasiRoutes);
 
 // Test route
 app.get('/', (req, res) => {
